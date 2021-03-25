@@ -1,6 +1,6 @@
 # Google Domains DDNS Updater
 
-Version 0.1.0
+Version 0.1.1
 
 started by Sakurai Shinya (Twitter:@sakurai_sinya)
 
@@ -40,7 +40,7 @@ Google DomainsのAPIのヘルプは以下を参照してください。
 example.com,zHT94GMMi5tcVQCU,tpfdS5BSpLH8JKte
 www.example.com,KyHq6z9ebb5gPDuK,RtHuRVqRQ478w5EM
 static.example.com,NRtBHCQCRrwGk3Lr,zhTizwUhh8ArK4G6
-#でコメントも可能（1行のみ）
+#でコメントも可能
 private.example.com,Yk6YRqgQLXJWbAuc,HsjE7iyFcQJKBakR
 admin.example.com,qdiKFfENMp8XTzrc,ebqZXmEcRfsMrQNt
 ```
@@ -64,8 +64,9 @@ admin.example.comの結果: good 1.2.3.4
 
 このプロジェクトは下記の依存関係があります。
 
-[reqwest](https://github.com/seanmonstar/reqwest) (バージョン0.11.0)
+[reqwest](https://github.com/seanmonstar/reqwest) (バージョン0.11.2)
 
 ## バージョン履歴
 
-2020-01-23 0.1.0 初期バージョン公開
+2021-03-26 0.1.1 Google Domainsからの応答が911だった場合再試行するよう修正
+2021-01-23 0.1.0 初期バージョン公開

@@ -18,8 +18,13 @@ fn main() {
 			println!("更新開始... ドメイン: {}",domain.domain);
 			let client = reqwest::blocking::Client::new();
 			let a = format!("https://{}:{}@domains.google.com/nic/update?hostname={}&myip={}",domain.user_name,domain.password,domain.domain,ip);
-			let res = client.post(&a).header("Content-Type","application/x-www-form-urlencoded").body("").send().unwrap().text().unwrap();
-			println!("{}の結果: {}",domain.domain,res);
+			loop {
+				let res = client.post(&a).header("Content-Type","application/x-www-form-urlencoded").body("").send().unwrap().text().unwrap();
+				if res != "911" {
+					println!("{}の結果: {}",domain.domain,res);
+					break;
+				}
+			}
 		});
 		thread_list.push(thread);
 	}
@@ -29,7 +34,7 @@ fn main() {
 fn show_start_message() {
 	println!();
 	println!("Google Domains DDNS Updater");
-	println!("version 0.1.0");
+	println!("version 0.1.1");
 	println!();
 }
 
@@ -57,6 +62,7 @@ fn get_domain_list() -> Vec<Domain> {
 
 fn get_ip_address() -> String {
 	reqwest::blocking::get("http://checkip.amazonaws.com/").unwrap().text().unwrap()
+	//String::from("1.2.3.4") //デバッグ用(使う時は上の行をコメントアウトしてデバッグ用のIPアドレスを入れる)
 }
 
 fn wait_for_thread_complete(threads:Vec<JoinHandle<()>>){
